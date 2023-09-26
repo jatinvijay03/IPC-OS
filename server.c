@@ -27,6 +27,7 @@ int main() {
 		if(isParent){
 			close(fd[0]);
 			write(fd[1], rcv_msg.mtext, sizeof(rcv_msg.mtext));
+			close(fd[1]);
 			continue;
 		}
 
@@ -36,6 +37,7 @@ int main() {
 			char prompt[100];
 			close(fd[1]);
 			read(fd[0], prompt, sizeof(prompt));
+			close(fd[0]);
 			if(strcmp("hi",prompt) == 0){
 				
 				strcpy(snd_msg.mtext, "hello");
