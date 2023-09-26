@@ -40,7 +40,7 @@ int main() {
 				char command[100] = "find . -name ";
 				memmove(rcv_msg.mtext, rcv_msg.mtext+2, strlen(rcv_msg.mtext));
 				strcat(command, rcv_msg.mtext);
-				strcpy(snd_msg.mtext, system(command));
+				strcpy(snd_msg.mtext, command);
 				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
 				exit(0);
 			}
@@ -49,7 +49,7 @@ int main() {
 				char command[100] = "wc -w ";
 				memmove(rcv_msg.mtext, rcv_msg.mtext+2, strlen(rcv_msg.mtext));
 				strcat(command, rcv_msg.mtext);
-				strcpy(snd_msg.mtext, system(command));
+				strcpy(snd_msg.mtext, command);
 				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
 				exit(0);
 			}
