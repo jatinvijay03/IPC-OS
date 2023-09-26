@@ -22,33 +22,40 @@ int main() {
 	while(1){
 		msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), 0, 0);
 		snd_msg.mtype = rcv_msg.mtype;
+		int fd[2];
 		int isParent = fork();
 		if(isParent){
+			close(fd[0]);
+			write(fd[1], rcv_msg.mtext, sizeof(rcv_msg.mtext));
 			continue;
 		}
 
 
+
 		else{
-			if(strcmp("hi",rcv_msg.mtext) == 0){
+			char prompt[100];
+			close(fd[1]);
+			read(fd[0], prompt, sizeof(prompt));
+			if(strcmp("hi",prompt) == 0){
 				
 				strcpy(snd_msg.mtext, "hello");
 				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
 				exit(0);
 				}
-			else if (rcv_msg.mtext[0] == '2')
+			else if (prompt[0] == '2')
 			{
 				char command[100] = "find . -name ";
-				memmove(rcv_msg.mtext, rcv_msg.mtext+2, strlen(rcv_msg.mtext));
-				strcat(command, rcv_msg.mtext);
+				memmove(prompt, prompt+2, strlen(prompt));
+				strcat(command, prompt);
 				strcpy(snd_msg.mtext, command);
 				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
 				exit(0);
 			}
-			else if (rcv_msg.mtext[0] == '3')
+			else if (prompt[0] == '3')
 			{	
 				char command[100] = "wc -w ";
-				memmove(rcv_msg.mtext, rcv_msg.mtext+2, strlen(rcv_msg.mtext));
-				strcat(command, rcv_msg.mtext);
+				memmove(prompt, prompt+2, strlen(prompt));
+				strcat(command, prompt);
 				strcpy(snd_msg.mtext, command);
 				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
 				exit(0);
