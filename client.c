@@ -22,6 +22,7 @@ int main() {
 		printf("1. Enter 1 to contact the Ping Server\n2. Enter 2 to contact the File Search Server\n3. Enter 3 to contact the File Word Count Server\n4. Enter 4 if this Client wishes to exit\nYour choice: ");
 		char choice;
 		scanf("%s", &choice);
+		strcpy(message.mtext, &choice);
 		if(choice == '4'){
 			break;
 		}
