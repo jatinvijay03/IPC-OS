@@ -14,10 +14,12 @@ int main() {
 	int msqid = msgget(key, 0666 | IPC_CREAT);
 
 	struct message rcv_msg;
+	struct message snd_msg;
+	
 	while(1){
 		msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), 0, 0);
-
-		printf("Received message: %s\n", rcv_msg.mtext);
+		if(rcv_msg.mtext == "1")
+			printf("Received message: %s\n", rcv_msg.mtext);
 	}
 	
     while(1);
