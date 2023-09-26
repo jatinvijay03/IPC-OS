@@ -42,11 +42,11 @@ int main() {
 			strcat(message.mtext, filename);
 			msgsnd(msqid, &message, sizeof(message.mtext), 0);
 			msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), id, 0);
-			if(rcv_msg.mtext[0] == '\0')
-				printf("File not found\n");
-			else
-				printf("File found\n");
-			
+			// if(rcv_msg.mtext[0] == '\0')
+			// 	printf("File not found\n");
+			// else
+			// 	printf("File found\n");
+			printf("%s", rcv_msg.mtext[0]);
 		}
 		else if(choice == '3'){
 			strcpy(message.mtext, "3");
