@@ -17,6 +17,7 @@ int main() {
 	printf("Enter client id: ");
 	scanf("%d", &id);
 	struct message message;
+	struct message rcv_msg;
 	message.mtype = id;
 	while(1){
 		printf("1. Enter 1 to contact the Ping Server\n2. Enter 2 to contact the File Search Server\n3. Enter 3 to contact the File Word Count Server\n4. Enter 4 if this Client wishes to exit\nYour choice: ");
@@ -47,8 +48,8 @@ int main() {
 		}
 		else{printf("Invalid choice\n"); continue;}
 		msgsnd(msqid, &message, sizeof(message.mtext), 0);
-		msgrcv(msqid, &message, sizeof(message.mtext), id, 0);
-		printf("Message received from server: %s\n", message.mtext);
+		msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), id, 0);
+		printf("Message received from server: %s\n", rcv_msg.mtext);
 		
 	}
 	
