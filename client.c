@@ -29,6 +29,23 @@ int main() {
 		if(choice == '1'){
 			strcpy(message.mtext, "hi");
 		}
+		else if(choice == '2'){
+			strcpy(message.mtext, "2");
+			char filename[100];
+			printf("Enter filename: ");
+			scanf("%s", filename);
+			strcat(message.mtext, " ");
+			strcat(message.mtext, filename);
+		}
+		else if(choice == '3'){
+			strcpy(message.mtext, "3");
+			char filename[100];
+			printf("Enter filename: ");
+			scanf("%s", filename);
+			strcat(message.mtext, " ");
+			strcat(message.mtext, filename);
+		}
+		else{printf("Invalid choice\n"); continue;}
 		msgsnd(msqid, &message, sizeof(message.mtext), 0);
 		msgrcv(msqid, &message, sizeof(message.mtext), id, 0);
 		printf("Message received from server: %s\n", message.mtext);
