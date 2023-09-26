@@ -37,14 +37,18 @@ int main() {
 				}
 			else if (strcmp("2",rcv_msg.mtext[0]) == 0)
 			{
-				char command[100] = strcat("find . -name ", rcv_msg.mtext+2);
+				char command[100] = "find . -name ";
+				memmove(rcv_msg.mtext, rcv_msg.mtext+2, strlen(rcv_msg.mtext));
+				strcat(command, rcv_msg.mtext);
 				strcpy(snd_msg.mtext, system(command));
 				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
 				exit(0);
 			}
 			else if (strcmp("3",rcv_msg.mtext[0]) == 0)
 			{	
-				char command[100] = strcat("wc -w ", rcv_msg.mtext+2);
+				char command[100] = "wc -w ";
+				memmove(rcv_msg.mtext, rcv_msg.mtext+2, strlen(rcv_msg.mtext));
+				strcat(command, rcv_msg.mtext);
 				strcpy(snd_msg.mtext, system(command));
 				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
 				exit(0);
