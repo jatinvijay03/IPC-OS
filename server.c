@@ -80,7 +80,7 @@ int main() {
 				
 				exit(0);
 			}
-			msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
+			
 			
 			}
 		

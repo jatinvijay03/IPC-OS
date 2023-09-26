@@ -57,7 +57,7 @@ int main() {
 			strcat(message.mtext, filename);
 			msgsnd(msqid, &message, sizeof(message.mtext), 0);
 			msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), id, 0);
-			printf("Message received from server: %s\n", rcv_msg.mtext);
+			printf("No of words and FileName: %s\n", rcv_msg.mtext[0]);
 		}
 		else{printf("Invalid choice\n"); continue;}
 		
