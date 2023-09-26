@@ -7,7 +7,7 @@
 struct message {
 	long mtype;
 	char mtext[100];
-};message;
+};
 
 int main() {
 	key_t key = ftok("path_to_key_file", 65);
@@ -16,7 +16,7 @@ int main() {
 	int id;
 	printf("Enter client id: ");
 	scanf("%d", &id);
-
+	struct message message;
 	message.mtype = id;
 	while(1){
 		printf("1. Enter 1 to contact the Ping Server\n2. Enter 2 to contact the File Search Server\n3. Enter 3 to contact the File Word Count Server\n4. Enter 4 if this Client wishes to exit\nYour choice: ");
