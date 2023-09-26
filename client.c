@@ -46,7 +46,7 @@ int main() {
 			// 	printf("File not found\n");
 			// else
 			// 	printf("File found\n");
-			printf("%s", rcv_msg.mtext[0]);
+			printf("%s", rcv_msg.mtext);
 		}
 		else if(choice == '3'){
 			strcpy(message.mtext, "3");
