@@ -42,7 +42,7 @@ int main() {
 			if(strcmp("hi",prompt) == 0){
 				
 				strcpy(snd_msg.mtext, "hello");
-				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
+				
 				exit(0);
 				}
 			else if (prompt[0] == '2')
@@ -51,8 +51,8 @@ int main() {
 				memmove(prompt, prompt+2, strlen(prompt));
 				strcat(command, prompt);
 				strcpy(snd_msg.mtext, command);
-				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
-				exit(0);
+				
+				execl("/bin/sh", "sh", "-c", command, NULL);
 			}
 			else if (prompt[0] == '3')
 			{	
@@ -60,9 +60,11 @@ int main() {
 				memmove(prompt, prompt+2, strlen(prompt));
 				strcat(command, prompt);
 				strcpy(snd_msg.mtext, command);
-				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
+				execl("/bin/sh", "sh", "-c", command, NULL);
+				
 				exit(0);
 			}
+			msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
 			
 			}
 		
