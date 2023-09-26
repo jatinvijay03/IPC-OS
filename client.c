@@ -26,7 +26,12 @@ int main() {
 		if(choice == '4'){
 			break;
 		}
+		if(choice == '1'){
+			strcpy(message.mtext, "hi");
+		}
 		msgsnd(msqid, &message, sizeof(message.mtext), 0);
+		msgrcv(msqid, &message, sizeof(message.mtext), id, 0);
+		printf("Message received from server: %s\n", message.mtext);
 		
 	}
 	

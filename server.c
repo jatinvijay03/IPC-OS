@@ -19,7 +19,11 @@ int main() {
 	while(1){
 		msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), 0, 0);
 		
-		printf("Received message: %s\n", rcv_msg.mtext);
+		if(strcmp("hi",rcv_msg.mtext) == 0){
+			snd_msg.mtype = rcv_msg.mtype;
+			strcpy(snd_msg.mtext, "hello");
+			msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
+		}
 	}
 	
     while(1);
