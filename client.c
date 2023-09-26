@@ -29,6 +29,9 @@ int main() {
 		}
 		if(choice == '1'){
 			strcpy(message.mtext, "hi");
+			msgsnd(msqid, &message, sizeof(message.mtext), 0);
+			msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), id, 0);
+			printf("Message received from server: %s\n", rcv_msg.mtext);
 		}
 		else if(choice == '2'){
 			strcpy(message.mtext, "2");
@@ -37,6 +40,13 @@ int main() {
 			scanf("%s", filename);
 			strcat(message.mtext, " ");
 			strcat(message.mtext, filename);
+			msgsnd(msqid, &message, sizeof(message.mtext), 0);
+			msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), id, 0);
+			if(rcv_msg.mtext[0] == '\0')
+				printf("File not found\n");
+			else
+				printf("File found\n");
+			
 		}
 		else if(choice == '3'){
 			strcpy(message.mtext, "3");
@@ -45,11 +55,12 @@ int main() {
 			scanf("%s", filename);
 			strcat(message.mtext, " ");
 			strcat(message.mtext, filename);
+			msgsnd(msqid, &message, sizeof(message.mtext), 0);
+			msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), id, 0);
+			printf("Message received from server: %s\n", rcv_msg.mtext);
 		}
 		else{printf("Invalid choice\n"); continue;}
-		msgsnd(msqid, &message, sizeof(message.mtext), 0);
-		msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), id, 0);
-		printf("Message received from server: %s\n", rcv_msg.mtext);
+		
 		
 	}
 	
