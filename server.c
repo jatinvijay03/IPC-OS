@@ -35,7 +35,7 @@ int main() {
 				msgsnd(msqid, &snd_msg, sizeof(snd_msg.mtext), 0);
 				exit(0);
 				}
-			else if (rcv_msg.mtext[0] == '3')
+			else if (rcv_msg.mtext[0] == '2')
 			{
 				char command[100] = "find . -name ";
 				memmove(rcv_msg.mtext, rcv_msg.mtext+2, strlen(rcv_msg.mtext));
