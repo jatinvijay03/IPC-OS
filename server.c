@@ -23,6 +23,7 @@ int main() {
 		msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), 0, 0);
 		snd_msg.mtype = rcv_msg.mtype;
 		int fd[2];
+		pipe(fd);
 		int isParent = fork();
 		if(isParent){
 			close(fd[0]);
