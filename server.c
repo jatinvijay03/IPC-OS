@@ -18,8 +18,8 @@ int main() {
 	
 	while(1){
 		msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), 0, 0);
-		if(rcv_msg.mtext == "1")
-			printf("Received message: %s\n", rcv_msg.mtext);
+		
+		printf("Received message: %s\n", rcv_msg.mtext);
 	}
 	
     while(1);
