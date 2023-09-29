@@ -35,6 +35,7 @@ int main() {
 
         if (strcmp(rcv_msg.mtext, "Terminate") == 0) {
             while (wait(NULL) > 0);
+            printf("Wahtra");
             if (msgctl(msqid, IPC_RMID, NULL) == -1) {
                 perror("msgctl");
                 exit(-4);
