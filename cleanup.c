@@ -38,10 +38,11 @@ int main() {
             struct message msg;
             msg.mtype = -1;
             strcpy(msg.mtext, "Terminate");
-            if (msgsnd(msqid, &msg, sizeof(msg.mtext), 0) == -1) {
-                perror("msgsnd");
-                exit(-3);
-            }
+            int mserror = msgsnd(msqid, &msg, sizeof(msg.mtext), 0) == -1;
+            // if (mserror == -1) {
+            //     perror("msgsnd");
+            //     exit(-3);
+            // }
             exit(0);
         } else if (choice == 'N' || choice == 'n') {
             
