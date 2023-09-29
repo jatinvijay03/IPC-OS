@@ -38,7 +38,7 @@ int main() {
             struct message msg;
             msg.mtype = -1;
             strcpy(msg.mtext, "Terminate");
-            int mserror = msgsnd(msqid, &msg, sizeof(msg.mtext), 0) == -1;
+            int mserror = msgsnd(msqid, &msg, sizeof(msg.mtext), 0);
             // if (mserror == -1) {
             //     perror("msgsnd");
             //     exit(-3);
