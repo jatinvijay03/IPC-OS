@@ -11,7 +11,7 @@ struct message {
 };
 
 int main() {
-    key_t key = ftok("path_to_key_file", 65);
+    key_t key = ftok("progfile", 65);
     if (key == -1) {
         perror("ftok");
         exit(-1);
