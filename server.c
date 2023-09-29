@@ -14,10 +14,10 @@ struct message {
 
 int main() {	
 	key_t key = ftok("progfile", 65);
-	if (key == -1) {
-        perror("ftok");
-        exit(-1);
-    }
+	// if (key == -1) {
+    //     perror("ftok");
+    //     exit(-1);
+    // }
     int msqid = msgget(key, 0666 | IPC_CREAT);
     if (msqid == -1) {
         perror("msgget");
