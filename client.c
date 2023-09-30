@@ -66,6 +66,13 @@ int main() {
                 perror("msgrcv");
                 exit(-6);
             }
+            if(strcmp(rcv_msg.mtext, "File not found") == 0) {
+                printf("File not found\n");
+                continue;
+            }
+            else{
+                printf("File found\n");
+            }
             printf("%s", rcv_msg.mtext);
         } else if (choice == '3') {
             strcpy(message.mtext, "3");

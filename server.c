@@ -91,8 +91,8 @@ int main() {
                 memmove(prompt, prompt + 2, strlen(prompt));
                 strcat(command, prompt);
                 if (access(prompt, F_OK) == 0) {
-                    printf("File exists.\n");
                     strcpy(snd_msg.mtext, command);
+                    //strcpy(snd_msg.mtext, "File found");
                     dup2(fd2[1], STDOUT_FILENO);
                     close(fd2[0]);
                     close(fd2[1]);
@@ -100,8 +100,16 @@ int main() {
                     perror("execl");
                     exit(-10);
                 } else {
-                    printf("File %s not found.\n",prompt);
+                    strcpy(snd_msg.mtext, "File not found");
+                    close(fd2[0]);
+                    if (write(fd2[1], snd_msg.mtext, sizeof(snd_msg.mtext)) == -1) {
+                        perror("write");
+                        exit(-11);
+                    }
+                    close(fd2[1]);
+                    exit(0);
                 }
+                
             } else if (prompt[0] == '3') {
                 char command[100] = "wc -w ";
                 memmove(prompt, prompt + 2, strlen(prompt));
