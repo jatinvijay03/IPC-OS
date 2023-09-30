@@ -39,6 +39,7 @@ int main() {
             msg.mtype = -1;
             strcpy(msg.mtext, "Terminate");
             int mserror = msgsnd(msqid, &msg, sizeof(msg.mtext), 0);
+            printf("%d\n", mserror);
         
             // if (mserror == -1) {
             //     perror("msgsnd");
