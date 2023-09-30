@@ -24,8 +24,15 @@ int main() {
     }
 
     int id;
-    printf("Enter client id (cannot put 1000 as thwe value): ");
+    while(1)
+    {printf("Enter client id (cannot put 1000 as thwe value): ");
     scanf("%d", &id);
+    if(id == 1000)
+    {
+        printf("Invalid id\n");
+        continue;
+    }
+    break;}
 
     struct message message;
     struct message rcv_msg;
