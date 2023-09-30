@@ -25,18 +25,15 @@ int main() {
         perror("msgget");
         exit(-2);
     }
-
-    struct message rcv_msg;
-    struct message snd_msg;
-
+    struct message msg;
     while (1) {
         printf("Do you want the server to terminate? Press Y for Yes and N for No: ");
         char choice;
         scanf("%c", &choice);
 
         if (choice == 'Y' || choice == 'y') {
-            struct message msg;
-            msg.mtype = -1;
+            
+            msg.mtype = 10;
             strcpy(msg.mtext, "Terminate");
             int mserror = msgsnd(msqid, &msg, sizeof(msg.mtext), 0);
             printf("%d\n", mserror);
