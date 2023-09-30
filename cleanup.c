@@ -32,13 +32,14 @@ int main() {
     while (1) {
         printf("Do you want the server to terminate? Press Y for Yes and N for No: ");
         char choice;
-        scanf(" %c", &choice);
+        scanf("%c", &choice);
 
         if (choice == 'Y' || choice == 'y') {
             struct message msg;
             msg.mtype = -1;
             strcpy(msg.mtext, "Terminate");
             int mserror = msgsnd(msqid, &msg, sizeof(msg.mtext), 0);
+        
             // if (mserror == -1) {
             //     perror("msgsnd");
             //     exit(-3);
