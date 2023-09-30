@@ -50,7 +50,7 @@ int main() {
         if (choice == '1') {
             strcpy(message.mtext, "hi");
             if (msgsnd(msqid, &message, sizeof(message.mtext), 0) == -1) {
-                perror("msgsnd");
+                printf("Error in sending message\n");
                 exit(-3);
             }
             if (msgrcv(msqid, &rcv_msg, sizeof(rcv_msg.mtext), id, 0) == -1) {
