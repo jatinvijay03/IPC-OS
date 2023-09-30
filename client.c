@@ -25,7 +25,7 @@ int main() {
 
     int id;
     while(1)
-    {printf("Enter client id (cannot put 1000 as thwe value): ");
+    {printf("Enter client id (cannot put 1000 as the value): ");
     scanf("%d", &id);
     if(id == 1000)
     {
@@ -80,7 +80,7 @@ int main() {
             else{
                 printf("File found\n");
             }
-            printf("%s", rcv_msg.mtext);
+            printf("%s\n", rcv_msg.mtext);
         } else if (choice == '3') {
             strcpy(message.mtext, "3");
             char filename[100];
