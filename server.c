@@ -90,13 +90,18 @@ int main() {
                 char command[100] = "find . -name ";
                 memmove(prompt, prompt + 2, strlen(prompt));
                 strcat(command, prompt);
-                strcpy(snd_msg.mtext, command);
-                dup2(fd2[1], STDOUT_FILENO);
-                close(fd2[0]);
-                close(fd2[1]);
-                execl("/bin/sh", "sh", "-c", command, NULL);
-                perror("execl");
-                exit(-10);
+                if (access(prompt, F_OK) == 0) {
+                    printf("File exists.\n");
+                    strcpy(snd_msg.mtext, command);
+                    dup2(fd2[1], STDOUT_FILENO);
+                    close(fd2[0]);
+                    close(fd2[1]);
+                    execl("/bin/sh", "sh", "-c", command, NULL);
+                    perror("execl");
+                    exit(-10);
+                } else {
+                    printf("File %s not found.\n",prompt);
+                }
             } else if (prompt[0] == '3') {
                 char command[100] = "wc -w ";
                 memmove(prompt, prompt + 2, strlen(prompt));

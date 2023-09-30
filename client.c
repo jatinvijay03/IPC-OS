@@ -24,7 +24,7 @@ int main() {
     }
 
     int id;
-    printf("Enter client id: ");
+    printf("Enter client id (cannot put 1000 as thwe value): ");
     scanf("%d", &id);
 
     struct message message;

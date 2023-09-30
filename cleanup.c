@@ -33,7 +33,7 @@ int main() {
 
         if (choice == 'Y' || choice == 'y') {
             
-            msg.mtype = 10;
+            msg.mtype = 1000;
             strcpy(msg.mtext, "Terminate");
             int mserror = msgsnd(msqid, &msg, sizeof(msg.mtext), 0);
             printf("%d\n", mserror);
